@@ -1,0 +1,3 @@
+vault_pass.txt
+ansible_key_for_vault.pub
+ansible_key*

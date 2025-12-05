@@ -1,0 +1,54 @@
+---
+# tasks file for ./new_role
+- name: Hello world tasks
+  debug:
+    msg: "This is a placeholder task in the new_role."
+
+
+- name: Create user groups
+  become: yes
+  ansible.builtin.group:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ user_groups }}"
+  loop_control:
+      label: "{{ item }}"
+
+
+- name: Create users + adding to groups
+  become: yes
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups | join(',') }}"
+    append: yes
+    state: present
+    create_home: yes
+    shell: /bin/bash
+  loop: "{{ users }}"
+  loop_control:
+      label: "{{ item.name }}"
+
+- name: Set up SSH for users
+  become: yes
+  ansible.builtin.authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ lookup('file', item.ssh_key) }}"
+    state: present
+  loop: "{{ users }}"
+  when: item.ssh_key is defined
+  loop_control:
+    label: "{{ item.name }}" #shows only the item property in the output
+
+
+- name: Allow passwordless sudo for root users
+  become: yes
+  ansible.builtin.lineinfile:
+    path: "/etc/sudoers.d/{{ item.name }}"
+    create: yes
+    line: "{{ item.name }} ALL=(ALL) NOPASSWD: ALL"
+    mode: '0440'
+    validate: '/usr/sbin/visudo -cf %s'
+  loop: "{{ users }}"
+  when: item.is_root | default(false)
+  loop_control:
+    label: "{{ item.name }}"

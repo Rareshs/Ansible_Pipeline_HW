@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ ansible_hostname }} - Managed by Ansible</title>
+  </head>
+  <body>
+    <h1>Hello from {{ ansible_hostname }}!</h1>
+    <p>This page was created on:{{ ansible_date_time.date }} using Ansible.</p>
+
+    <h2>Users</h2>
+    <ul>
+      {% for user in users %}
+        <li>
+          {{ user.name }}
+          {% if user.is_root %}
+            (Admin)
+          {% else %}
+            (Standard User)
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
