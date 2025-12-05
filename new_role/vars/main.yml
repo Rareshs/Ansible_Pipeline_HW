@@ -8,8 +8,8 @@ users:
   - name: rares
     groups: ['devops','sudo']
     is_root: true
-    ssh_key: 'ansible_key_for_vault.pub'
   - name: apache
     groups: ['apachegroup']
     is_root: false
-    ssh_key: 'ansible_key_for_vault.pub'
+
+

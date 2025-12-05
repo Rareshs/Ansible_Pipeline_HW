@@ -1,5 +1,14 @@
 ---
 # tasks file for ./new_role
+
+- name: Load secret vars
+  ansible.builtin.include_vars:
+    file: secret_vars.yml
+
+- name: Show vault vars
+  debug:
+    msg: "User={{ vault_db_user }}, Pass={{ vault_db_pass }}"
+    
 - name: Hello world tasks
   debug:
     msg: "This is a placeholder task in the new_role."
@@ -52,3 +61,4 @@
   when: item.is_root | default(false)
   loop_control:
     label: "{{ item.name }}"
+
