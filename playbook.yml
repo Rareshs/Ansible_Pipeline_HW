@@ -6,13 +6,13 @@
     - geerlingguy.apache
 
   vars:
-    apache_listen_port: 8080 #check default for what to modify
+    apache_listen_port: 8080 # check default for what to modify
     apache_user: apache
     apache_group: apachegroup
     apache_remove_default_vhost: yes # remove default vhost
 
-#Custom tasks that uses the apache role
-#custom html page
+# Custom tasks that uses the apache role
+# custom html page
   tasks:
     - name: Custom HTML page
       ansible.builtin.template:
@@ -22,9 +22,7 @@
         group: apachegroup
         mode: '0644'
         force: yes # forces my template to be copied even if it exists
-      notify: Restart Apache # notifthe the handler below to restart apache
-
-
+      notify: Restart Apache # notify the the handler below to restart apache
 
   handlers:
     - name: Restart Apache

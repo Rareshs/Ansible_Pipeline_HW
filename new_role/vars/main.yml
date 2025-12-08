@@ -1,5 +1,5 @@
 ---
-#vars file for ./new_role
+# vars file for ./new_role
 user_groups:
   - devops
   - apachegroup
@@ -11,5 +11,3 @@ users:
   - name: apache
     groups: ['apachegroup']
     is_root: false
-
-
