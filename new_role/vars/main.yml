@@ -11,4 +11,3 @@ users:
   - name: apache
     groups: ['apachegroup']
     is_root: false
-    
