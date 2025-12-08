@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Test new_role functionality
+  hosts: localhost
   remote_user: root
   roles:
-    - ./new_role
+    - new_role
