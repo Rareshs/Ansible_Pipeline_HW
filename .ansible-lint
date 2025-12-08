@@ -1,0 +1,13 @@
+exclude_paths:
+  - geerlingguy.apache/
+  - inventory/
+
+skip_list:
+  - fqcn  # ignore FQCN requirement
+  - yaml[line-length]  # ignore line length
+  - yaml[indentation]  # strict indentation rules
+  - yaml[truthy]  # allow yes/no instead of true/false
+  - no-free-form
+  - no-changed-when
+  - meta-incorrect  # ignore galaxy metadata issues
+  - schema  # ignore schema validation
