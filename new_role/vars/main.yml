@@ -6,7 +6,7 @@ user_groups:
 
 users:
   - name: rares
-    groups: ['devops','sudo']
+    groups: ['devops', 'sudo']
     is_root: true
   - name: apache
     groups: ['apachegroup']

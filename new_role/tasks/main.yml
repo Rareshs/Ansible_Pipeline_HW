@@ -46,7 +46,7 @@
   loop: "{{ users }}"
   when: item.ssh_key is defined
   loop_control:
-    label: "{{ item.name }}" #shows only the item property in the output
+    label: "{{ item.name }}" # shows only the item property in the output
 
 
 - name: Allow passwordless sudo for root users
@@ -61,4 +61,3 @@
   when: item.is_root | default(false)
   loop_control:
     label: "{{ item.name }}"
-
