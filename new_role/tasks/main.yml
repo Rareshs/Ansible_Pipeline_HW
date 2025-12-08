@@ -13,7 +13,6 @@
   debug:
     msg: "This is a placeholder task in the new_role."
 
-
 - name: Create user groups
   become: yes
   ansible.builtin.group:
